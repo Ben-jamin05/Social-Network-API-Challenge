@@ -11,7 +11,7 @@ module.exports = {
   },
   async getSingleThought(req, res) {
     try {
-      const thought = await Thought.findOne({ _id: req.params.videoId })
+      const thought = await Thought.findOne({ _id: req.params.thoughtId })
 
       if (!thought) {
         return res.status(404).json({ message: 'No thought with that ID' });
@@ -52,7 +52,7 @@ module.exports = {
       );
 
       if (!thought) {
-        return res.status(404).json({ message: 'No video with this id!' });
+        return res.status(404).json({ message: 'No thought with this id!' });
       }
 
       res.json(thought);
@@ -86,7 +86,14 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  // Add a video response
+
+  /* these two I think are 
+  /api/thoughts/:thoughtId/reactions
+
+POST to create a reaction stored in a single thought's reactions array field
+
+DELETE to pull and remove a reaction by the reaction's reactionId value
+*/ 
   async addThoughtReaction(req, res) {
     try {
       const thought = await Thought.findOneAndUpdate(
