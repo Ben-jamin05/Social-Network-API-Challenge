@@ -1,4 +1,6 @@
 {
+  "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "start": "node index",
     "watch": "nodemon index",
@@ -6,6 +8,7 @@
   },
   "dependencies": {
     "express": "^4.19.2",
+    "moment": "^2.30.1",
     "mongoose": "^8.5.2"
   },
   "devDependencies": {
