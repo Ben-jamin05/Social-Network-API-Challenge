@@ -53,35 +53,46 @@ module.exports = {
         const user = await User.findOneAndDelete({ _id: req.params.userId });
     
         if (!user) {
-          return res.status(404).json({ message: 'No thought with this id!' });
+          return res.status(404).json({ message: 'No user with this id!' });
         }
-    
-        /* make work if you feel like it
-        const thought = await Thought.findOneAndUpdate(
-          { thoughts: req.params.thoughtId },
-          { $pull: { thoughts: req.params.thoughtId } },
-          { new: true }
-        );
-    
-        if (!user) {
-          return res
-            .status(404)
-            .json({ message: 'Thought deleted but no user with this id' });
-        }
-        */
     
         res.json({ message: 'User successfully deleted' });
       } catch (err) {
         res.status(500).json(err);
       }
     },
-  };
+    async addUserFriend(req, res) {
+      try {
+        const user = await User.findOneAndUpdate(
+          { _id: req.params.userId },
+          { $addToSet: { friends: req.body.friend } },
+          { runValidators: true, new: true }
+        );
   
-  //maybe just have this in user idk
-
-/* /api/users/:userId/friends/:friendId
-
-POST to add a new friend to a user's friend list
-
-DELETE to remove a friend from a user's friend list
-*/
+        if (!user) {
+          return res.status(404).json({ message: 'No user with this id' });
+        }
+  
+        res.json(user);
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    },
+    async removeUserFriend(req, res) {
+      try {
+        const user = await User.findOneAndUpdate(
+          { _id: req.params.userId },
+          { $pull: { friends: { friendId: req.params.friendId } } },
+          { runValidators: true, new: true }
+        )
+  
+        if (!user) {
+          return res.status(404).json({ message: 'No user with this id' });
+        }
+  
+        res.json(user);
+      } catch (err) {
+        res.status(500).json(err);
+      }
+    }
+};
