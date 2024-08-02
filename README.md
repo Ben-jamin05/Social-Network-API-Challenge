@@ -10,7 +10,7 @@ Run npm i in your vs code terminal to be able to run this program
 
 ## Usage
 
-Watch this [video]()
+Watch this [video](https://www.awesomescreenshot.com/video/30147660?key=c6504a68859418f0828ff7f053c3f24a)
 
 ## Credits 
 
@@ -44,4 +44,4 @@ SOFTWARE.
 
 ## Link
 
-Video [Link]()
+Video [Link](https://www.awesomescreenshot.com/video/30147660?key=c6504a68859418f0828ff7f053c3f24a)
