@@ -19,7 +19,7 @@ router.route('/:userId').get(getSingleUser).put(updateUser).delete(deleteUser);
 // /api/users/:userId/friends
 router.route('/:userId/friends').post(addUserFriend);
 
-// /api/thoughts/:userId/friends/:friendId
+// /api/users/:userId/friends/:friendId
 router.route('/:userId/friends/:friendId').delete(removeUserFriend);
 
 
